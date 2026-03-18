@@ -400,7 +400,7 @@
       card.className = 'card';
       card.style.animationDelay = `${i * 0.07}s`;
 
-      // fix download link for google drive view links
+      
       let dlUrl = skin.download;
       const m = dlUrl.match(/\/file\/d\/([^/]+)\//);
       if (m) dlUrl = `https://drive.google.com/uc?export=download&id=${m[1]}`;
@@ -428,14 +428,16 @@
       const img = card.querySelector('img');
       img.addEventListener('error', () => img.setAttribute('data-error', 'true'));
 
-      // open modal on image click only
+      
       card.querySelector('.card-img-wrap').addEventListener('click', () => {
         modalImg.src = skin.preview;
         modalImg.alt = skin.name;
+        modal.style.display = '';
+        modal.classList.remove('closing');
         modal.classList.add('open');
       });
 
-      // stop download btn from opening modal
+     
       card.querySelector('.dl-btn').addEventListener('click', e => e.stopPropagation());
 
       container.appendChild(card);
