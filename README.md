@@ -1,4 +1,4 @@
-# https://xayoto.github.io/xayoto-skins/
+# Skins i use:
 
 [miskastella](https://drive.google.com/uc?export=download&id=1R30ZPHZ58po7orGETS3F6QJVLISj4Vf6)
 ![miska](https://files.catbox.moe/ysj5q7.jpg)
