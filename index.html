@@ -265,12 +265,22 @@
 
     .modal.open {
       display: flex;
-      animation: fadeIn 0.2s ease;
+      animation: fadeIn 0.25s ease forwards;
+    }
+
+    .modal.closing {
+      display: flex;
+      animation: fadeOut 0.25s ease forwards;
     }
 
     @keyframes fadeIn {
       from { opacity: 0; }
       to   { opacity: 1; }
+    }
+
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to   { opacity: 0; }
     }
 
     .modal-inner {
@@ -284,9 +294,18 @@
       animation: popIn 0.3s cubic-bezier(.22,.68,0,1.2);
     }
 
+    .modal.closing .modal-inner {
+      animation: popOut 0.25s cubic-bezier(.4,0,1,1) forwards;
+    }
+
     @keyframes popIn {
       from { transform: scale(0.88); opacity: 0; }
       to   { transform: scale(1);    opacity: 1; }
+    }
+
+    @keyframes popOut {
+      from { transform: scale(1);    opacity: 1; }
+      to   { transform: scale(0.88); opacity: 0; }
     }
 
     .modal-inner img {
@@ -429,7 +448,13 @@
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
   function closeModal() {
+    if (!modal.classList.contains('open')) return;
     modal.classList.remove('open');
+    modal.classList.add('closing');
+    modal.addEventListener('animationend', () => {
+      modal.classList.remove('closing');
+      modal.style.display = 'none';
+    }, { once: true });
   }
 </script>
 
